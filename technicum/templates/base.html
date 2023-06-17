@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Техникум</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" 
+          rel="stylesheet" 
+          integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" 
+          crossorigin="anonymous">
+        <style>
+            html, body {
+                overflow-x: hidden;
+            }
+            h1 {
+                line-height: 1.5;
+            }
+            .main {
+                margin: 5rem 0;
+            }
+            .star {
+                color: red;
+            }
+            .logo-container {
+                display: flex;
+                align-items: center;
+            }
+            .logo-container img {
+                margin-right: 15px; 
+            }
+            .infographic {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 2rem;
+                margin: 80px 20px; 
+            }
+            
+            .infographic-item {
+                text-align: center;
+            }
+
+            .infographic-item h2 {
+                font-size: 24px;
+            }
+
+            .infographic-item p {
+                font-size: 18px;
+                margin-top: 10px;
+            }
+            .nav-item {
+                max-width: 13rem;
+                margin: 0 20px;
+            }
+            .nav-link.active {
+                max-width: 10rem;
+            }
+            .nav-link:hover {
+                color: #007bff;
+            }
+            .dropdown-toggle::after {
+                position: absolute;
+                top: 18px;
+                right: 0px;
+            }
+            @media (max-width: 991.98px) {
+                .nav-item {
+                    max-width: 100%;
+                }
+            }
+        </style>
+</head>
+  <body class="d-flex flex-column min-vh-100 bg-light">
+    <header>
+      <nav class="navbar navbar-expand-lg bg-body shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'main_page:index' %}">
+              <div class="logo-container">
+                <img src="{% static 'techlogo.png' %}" width="70" height="70" alt="Логотип">
+                <h4 style="color: #404040;">Техникум</h4>
+              </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Переключатель навигации">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <!--<li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'main_page:index' %}">Главная</a>
+                </li>-->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-wrap" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Разработать документы на продкукцию
+                    </a>
+                    <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="/passport">Разработать паспорт</a></li>
+                    <li><a class="dropdown-item" href="/tu">Разработать технические условия</a></li>
+                    <li><a class="dropdown-item" href="/rexpl">Разработать руководство по эксплуатации</a></li>
+                    <li><a class="dropdown-item" href="/obez">Разработать обоснование безопасности</a></li>
+                    </ul>
+                </li>
+                
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-wrap" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Разработать товаросопроводителные документы
+                    </a>
+                    <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="/dul">Разработать ДУЛ</a></li>
+                    <li><a class="dropdown-item" href="/contract">Контракт + инвойс</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-wrap" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Разработать документы СМК
+                    </a>
+                    <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="/smk">Разработать комплект документов СМК</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'about' %}">О сервисе</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'logout' %}">Выход &#128272;</a>
+                </li>
+                </ul>
+            </div>
+        </div>
+      </nav>
+    </header>
+    <main class="main">
+        <div class="container">
+            {% if user.is_authenticated %}
+                {% block content %}
+                {% endblock %}
+            {% else %}
+                <script>
+                    window.location.href = "{% url 'login' %}";
+                </script>
+            {% endif %}
+        </div>
+    </main>
+    <footer class="border-top text-center mt-auto">
+      <div class="row">
+        <div class="col-12 text-center bg-body shadow-sm pt-3" style="line-height: 1;">
+          <p>© Техникум</p>
+        </div>
+      </div>
+  </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" 
+            integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" 
+            crossorigin="anonymous">
+    </script>
+  </body>
+</html>

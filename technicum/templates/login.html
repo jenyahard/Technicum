@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+{% if user.is_authenticated %}
+{% load static %}
+  <script>
+    window.location.href = "{% url 'main_page:index' %}";
+  </script>
+{% else %}
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Техникум вход</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" 
+          rel="stylesheet" 
+          integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" 
+          crossorigin="anonymous">
+          <style>
+            html, body {
+              overflow-x: hidden;
+            }
+            .main {
+              padding: 5rem 0;
+            }
+            .form-control {
+              width: 100%;
+            }
+            .logo-container {
+              display: flex;
+              align-items: center;
+            }
+            .logo-container img {
+              margin-right: 15px; 
+            }
+        </style>
+  </head>
+  <body class="d-flex flex-column min-vh-100 bg-light">
+    <header>
+      <nav class="navbar navbar-expand-lg bg-body shadow-sm">
+        <div class="container">
+          <div class="navbar-collapse">
+            <a class="navbar-brand" href="#">
+              <div class="logo-container">
+                <img src="{% static 'techlogo.png' %}" width="70" height="70" alt="Логотип">
+                <h4 style="color: #404040;">Техникум</h4>
+              </div>
+              </a>
+            <ul class="navbar-nav">
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="main">
+      <div class="container">
+        <div class="row mx-3 gx-0">
+          <div class="col-md-5 m-auto">
+            <h2 class="mb-3">Вход</h2>
+        <form method="post">
+            {% csrf_token %}
+              {{ error_message }}
+              <div class="row g-3">
+                <div class="col-12">
+                  <label for="id_username" class="form-label">Логин:</label>
+                  <input type="text" class="form-control" name="username" id="id_username" placeholder="Введите логин" required="">
+                  <div class="invalid-feedback">
+                    Пожалуйста, введите свой логин.
+                  </div>
+                </div>
+                <div class="col-12">
+                  <label for="id_password" class="form-label">Пароль:</label>
+                  <input type="password" class="form-control" name="password" id="id_password" placeholder="Введите пароль" required="">
+                  <div class="invalid-feedback">
+                    Пожалуйста, введите свой пароль.
+                  </div>
+                </div>
+                <hr class="my-4">
+                <input type="submit" class="w-100 btn btn-primary btn-lg mt-0" value="Войти">
+              </div>
+        </form>
+      </div>
+        </div>
+      </div>
+    </main>
+    <footer class="footer border-top text-center mt-auto">
+      <div class="row">
+          <div class="col-12 text-center bg-body shadow-sm pt-3">
+          <p>© Техникум</p>
+          <p>emaslyuk322@gmail.com</p>
+        </div>
+      </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" 
+            integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" 
+            crossorigin="anonymous">
+    </script>
+  </body>
+</html>
+{% endif %}

@@ -1,0 +1,37 @@
+1) В settings прописываем:
+
+MEDIA_ROOT = BASE_DIR / 'media'
+
+MEDIA_URL = '/media/'
+
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
+
+2) Во вьюхи импортируем 
+import os
+from django.conf import settings
+
+base_dir = str(settings.BASE_DIR)
+media_root = str(settings.MEDIA_ROOT)
+static_root = str(settings.STATIC_ROOT)
+
+во вьюхах изменяем строчки с адресами на:
+
+file_path = os.path.join(settings.MEDIA_ROOT, f'new_{doc_type}.docx')
++ добавляем doc_type = 'contract'
+
+
+3)В пайтон скрипте изменяем импортируем:
+import os
+from django.conf import settings
+
+и изменяем строчки на:
+
+doc_path = os.path.join(settings.MEDIA_ROOT, f'{short_name}_base.docx')
+
+new_doc_name = os.path.join(settings.MEDIA_ROOT, f'new_{short_name}.docx')
+
+image_path = os.path.join(settings.MEDIA_ROOT, f'{image_name}')

@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block content %}
+        <h4>Разработка договора уполномоченного лица</h4>
+        <p class="text-secondary mb-4 fs-8px">Обязательные для заполнения поля помечены<span class="star">*</span></p>
+        <form action="dul_get_data/" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="card-group">
+                <div class="card shadow-sm mb-3">
+                    <div class="card-header">
+                        <h5>Данные изготовителя:</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label class="form-label"><span class="star">*</span>Укажите юридическое лицо изготовителя кратко, например Samsung Electro-Mechanics Co., Ltd:</label>
+                                <input class="form-control" type="text" name="field1" value="" required maxlength="60">
+                                <div class="invalid-feedback">Поле к заполнению обязательно</div>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label"><span class="star">*</span>В лице (выберите должность):</label>
+                                <select class="form-select" name="field2">
+                                    <option selected >Выберите...</option>
+                                    <option value="генерального директора">генерального директора</option>
+                                    <option value="уполномоченного лица">иного лица (по доверенности)</option>
+                                    <option value="руководителя организации">руководителя организации</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label"><span class="star">*</span>В лице (ФИО ген.директора или другого уполномоченного лица продавца):</label>
+                                <input class="form-control" type="text" name="field3" value="" required maxlength="60">
+                                <div class="invalid-feedback">Поле к заполнению обязательно</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card shadow-sm mb-3">
+                    <div class="card-header">
+                        <h5>Данные уполномоченного лица:</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label class="form-label"><span class="star">*</span>Укажите юр.лицо, например ООО «Компания-уполномоченное-лицо-в-ТС»:</label>
+                                <input class="form-control" type="text" name="field4" value="" required maxlength="60">
+                                <div class="invalid-feedback">Поле к заполнению обязательно</div>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label"><span class="star">*</span>Укажите номер ИНН уполномоченного юр.лица :</label>
+                                <input class="form-control" type="number" name="field10" value="" placeholder="7705494584" maxlength="20">
+                                <div class="invalid-feedback">Поле к заполнению обязательно</div>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label"><span class="star">*</span>В лице(выберите должность):</label>
+                                <select class="form-select" name="field5">
+                                    <option selected >Выберите...</option>
+                                    <option value="генерального директора">генерального директора</option>
+                                    <option value="уполномоченного лица">иного лица (по доверенности)</option>
+                                    <option value="руководителя организации">руководителя организации</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label"><span class="star">*</span>В лице (ФИО ген.директора или уполномоченного лица покупателя):</label>
+                                <input class="form-control" type="text" name="field6" value="" required maxlength="60"><br>
+                                <div class="invalid-feedback">Поле к заполнению обязательно</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row d-flex align-items-end flex-wrap g-3">
+                <div class="col-12 col-md-3">
+                    <label class="form-label"><span class="star">*</span>Введите дату для договора:</label>
+                    <input class="form-control" type="date" name="field7" value="">
+                    <div class="invalid-feedback">Поле к заполнению обязательно</div>
+                </div>
+                <div class="col-12 col-md-3">
+                    <label class="form-label"><span class="star">*</span>Срок действия договора(выберите):</label>
+                    <select class="form-select" name="field9">
+                        <option selected >Выберите...</option>
+                        <option value="1 года">1 год</option>
+                        <option value="2 лет">2 года</option>
+                        <option value="3 лет">3 года</option>
+                        <option value="5 лет">5 лет</option>
+                        <option value="10 лет">10 лет</option>
+                        <option value="20 лет">20 лет</option>
+                    </select>
+                </div>
+                <div class="col-12 col-md-3">
+                    <label class="form-label">Введите номер договора:</label>
+                    <input class="form-control" type="text" name="field8" value="" maxlength="20">
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-12 col-md-6 mx-auto">
+                    <input type="submit" class="btn btn-primary btn-lg w-100" value="Сформировать документ">
+                </div>
+            </div>
+    </form>
+{% endblock %}

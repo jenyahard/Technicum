@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row mb-5">
+    <div class="col-md-8 mx-auto">
+        <h4>Разработка обоснование безопасности</h4>
+        <p class="text-secondary mb-4 fs-8px">Обязательные для заполнения поля помечены <span class="star">* </span></p>
+        <form action="obez_get_data/" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row g-3">
+                <div class="col-12">
+                    <label class="form-label"><span class="star">* </span>Введите название компании-изготовителя:</label>
+                    <input class="form-control" type="text" name="field1" value="" placeholder="ООО «Компания»" required="" maxlength="50">
+                    <div class="invalid-feedback">Название компании обязательно</div>
+                </div>
+                <div class="col-12">
+                    <label class="form-label"><span class="star">* </span>Введите общее название продукции в ОБ:</label>
+                    <input class="form-control" type="text" name="field2" value="" placeholder="Кран козловой" required="" maxlength="50">
+                    <div class="invalid-feedback">Название продукции обязательно</div>
+                </div>
+                <div class="col-12">
+                    <label class="form-label"><span class="star">* </span>Введите название модели(ей) продукции:</label>
+                    <input class="form-control" type="text" name="field3" value="" placeholder="модель1, модель2" required="" maxlength="100">
+                    <div class="invalid-feedback">Название модели(ей) обязательно</div>
+                </div>
+                <div class="col-6 d-flex flex-column">
+                    <label class="form-label"><span class="star">* </span>Введите дату составления ОБ:</label>
+                    <input class="form-control mt-auto" type="date" name="field4" value="" required="">
+                    <div class="invalid-feedback">Дату обязательно</div>
+                </div>
+                <div class="col-6 d-flex flex-column">
+                    <label class="form-label"><span class="star">* </span>Укажите срок службы изделия в годах:</label>
+                    <select class="form-select mt-auto" name="field17" required="">
+                        <option value="">Выберите...</option>
+                        <option value="не ограничен">не ограничен</option>
+                        <option value="0,5">0,5</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="25">25</option>
+                        <option value="30">30</option>
+                        <option value="35">35</option>
+                        <option value="40">40</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                </div>
+                <div class="col-12">
+                    <label class="form-label"><span class="star">* </span>Введите 6-и значный код по классификатору ЕСКД в формате 112233. Найти его <a href='https://classinform.ru/ok-eskd/kod-101361.html' target="_blank">можно здесь</a></label>
+                    <input class="form-control" type="number" name="field5" value="000000" placeholder="пример заполнения поля" required="" maxlength="6">
+                    <div class="invalid-feedback">Поле к заполнению обязательно</div>
+                </div>
+                <div class="col-12">
+                    <label class="form-label"><span class="star">* </span>Введите код ОКПД2. Найти его <a href='https://classifikators.ru/okpd/' target="_blank">можно здесь</a></label>
+                    <input class="form-control" type="text" name="field6" value="00.00.00" placeholder="98.10.10" required="" maxlength="8">
+                    <div class="invalid-feedback">Поле к заполнению обязательно</div>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Введите адрес изготовителя:</label>
+                    <input class="form-control" type="text" name="field7" value="" placeholder="150066, г. Ярославль, ул. Маркса, д.1" maxlength="150">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Введите телефон изготовителя:</label>
+                    <input class="form-control" type="text" name="field8" value="" placeholder="+7(999)555-55-55" maxlength="40">
+                    <div class="invalid-feedback">Поле к заполнению обязательно</div>
+                </div>
+                <div class="col-12">
+                    <label class="form-label">Загрузите фото изделия (при наличии)</label>
+                    <input class="form-control btn btn-secondary w-75" type="file" name="field18" accept="image/jpeg, image/png, image/gif, image/jpg"><br>
+                    <small>Форматы: JPEG, GIF, PNG</small>
+                </div>
+            </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <h4>Указать любые характеристики для продукции можно в таблице ниже 
+            <span class="fs-5 mb-3 text-success">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-square-fill" viewBox="0 0 16 16">
+                    <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5a.5.5 0 0 1 1 0z"></path>
+                </svg>
+            </span>
+        </h4>
+            <div class="row g-3">
+                <div class="col-sm-6">
+                    <label class="form-label fw-bold">Показатель</label>
+                    <input class="form-control mb-3" type="text" name="field20" value="" placeholder="Например: Габариты, мм" maxlength="100">
+                    <input class="form-control mb-3" type="text" name="field22" value="" placeholder="Например: Вес, кг" maxlength="100">
+                    <input class="form-control mb-3" type="text" name="field24" value="" placeholder="Например: Сила тока, А" maxlength="100">
+                    <input class="form-control mb-3" type="text" name="field26" value="" placeholder="Например: Цвет изделия" maxlength="100">
+                </div>
+                <div class="col-sm-6">
+                    <label class="form-label fw-bold">Значение</label>
+                    <input class="form-control mb-3" type="text" name="field21" value="" placeholder="100x200x300" maxlength="100">
+                    <input class="form-control mb-3" type="text" name="field23" value="" placeholder="1" maxlength="100">
+                    <input class="form-control mb-3" type="text" name="field25" value="" placeholder="4" maxlength="100">
+                    <input class="form-control mb-3" type="text" name="field27" value="" placeholder="серый" maxlength="100">
+                </div>
+                <div class="col-lg-6 mx-auto">
+                    <input type="submit" class="btn btn-primary btn-lg w-100" value="Сформировать документ">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+Подробнее на: https://www.novotest.ru/blog/razrabotka-obosnovaniya-bezopasnosti/

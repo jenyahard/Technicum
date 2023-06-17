@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %}
+<div class="news-block">
+  <h4>Новости и последние обновления Техникума</h4><br>
+  {% for post in news %}
+    {% include "news_card.html" %}
+    <br>
+  {% endfor %}
+</div>
+{% endblock %}
+

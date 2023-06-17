@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<div class="card" style="width: 40rem;">
+  <div class="card-body">
+  <h5 class="card-title" color="blue">{{ post.news_title }}</h5>
+  <h6 class="card-subtitle mb-2 text-muted"></h6>
+    <p class="card-text">
+      <ul>
+        {% if post.news_text1 %}
+          <li>{{ post.news_text1 }}</li>
+        {% endif %}
+        {% if post.news_text2 %}
+          <li>{{ post.news_text2 }}</li>
+        {% endif %}
+        {% if post.news_text3 %}
+          <li>{{ post.news_text3 }}</li>
+        {% endif %}
+        {% if post.news_text4 %}
+          <li>{{ post.news_text4 }}</li>
+        {% endif %}
+      </ul>
+    </p>
+  </div>
+</div>
