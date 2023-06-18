@@ -9,13 +9,15 @@ from scripts.passport_insert_and_create_file import main_func
 from urllib.parse import quote
 
 
-def transform_data(fields_dict: dict, doc_type: str, request: HttpRequest) -> HttpResponse:
+def transform_data(fields_dict: dict, request: HttpRequest) -> HttpResponse:
     '''Трансформирует введенные пользователем на html странице
        текстовые и графические данные в word документ и
        отправляет пользователю этот документ для загрузки
     '''
-    if doc_type == 'tu':
+    
+    if fields_dict['doc_type'] == 'tu':
         fields_dict['pf35'] = request.POST.get('field6')[:4]
+    doc_type = fields_dict['doc_type']
     if request.method == 'POST':
         for i in range(1, 60):
             field_i = request.POST.get(f'field{i}')

@@ -10,7 +10,6 @@ def index(request: HttpRequest) -> HttpResponse:
     template = 'index.html'
     all_news = list(News.objects.all())
     context = {'news': all_news[::-1]}
-    print('all_news = ', all_news)
     return render(request, template, context)
 
 

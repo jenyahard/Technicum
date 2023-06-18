@@ -11,5 +11,5 @@ def tu(request: HttpRequest) -> HttpResponse:
 
 def tu_get_data(request: HttpRequest) -> HttpResponse:
     fields_dict = {}
-    doc_type = fields_dict['doc_type'] = 'tu'
-    return transform_data(fields_dict, doc_type, request)
+    fields_dict['doc_type'] = 'tu'
+    return transform_data(fields_dict, request)

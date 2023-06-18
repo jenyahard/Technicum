@@ -11,6 +11,6 @@ def contract(request: HttpRequest) -> HttpResponse:
 
 def contract_get_data(request: HttpRequest) -> HttpResponse:
     fields_dict = {}
-    doc_type = fields_dict['doc_type'] = 'contract'
-    response = transform_data(fields_dict, doc_type, request)
+    fields_dict['doc_type'] = 'contract'
+    response = transform_data(fields_dict, request)
     return response
