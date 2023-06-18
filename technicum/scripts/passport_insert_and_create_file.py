@@ -16,12 +16,12 @@ def main_func(fields_dict: dict):
        6-удаляет изображение из общей папки
        7-сохраняет готовый файл в общей папке
     '''
-    short_name = fields_dict['doc_type']
-    doc_path = os.path.join(settings.MEDIA_ROOT, f'{short_name}_base.docx')
-    document = Document(doc_path)
-    insert_data(fields_dict, document)
-    new_doc_name = os.path.join(settings.MEDIA_ROOT, f'new_{short_name}.docx')
-    document.save(new_doc_name)
+    doc_type = fields_dict['doc_type']
+    base_doc_path = os.path.join(settings.MEDIA_ROOT, f'{doc_type}_base.docx')
+    document = Document(base_doc_path)
+    insert_data(fields_dict, document)  # вставляем данные в шаблонный документ
+    new_doc_path = os.path.join(settings.MEDIA_ROOT, f'new_{doc_type}.docx')
+    document.save(new_doc_path)
     count_execution()
 
 
@@ -33,12 +33,12 @@ def delete_file(file_path) -> None:
 
 def insert_data(fields_dict: dict, document) -> None:
     '''Вставляем изображение, текст в document. Удаляем пустые поля.'''
-    if 'file_path' in fields_dict.keys():
+    if 'image_file_path' in fields_dict.keys():
         try:  # Если пользователь загрузил изображение jpeg, GIF, png
             insert_image_data(fields_dict, document)
         except: # Если пользователь якорь и загрузил не изображение
-            image_name = fields_dict['file_path']
-            image_path = os.path.join(settings.MEDIA_ROOT, f'{image_name}')
+            file_path_to_del = fields_dict['image_file_path']
+            image_path = os.path.join(settings.MEDIA_ROOT, f'{file_path_to_del}')
             delete_file(image_path)
     insert_text_data(fields_dict, document)
     delete_pf_from_doc(fields_dict, document)
@@ -69,12 +69,12 @@ def insert_image_data(fields_dict: dict, document) -> None:
                 for paragraph in cell.paragraphs:
                     if '{pf18}' in paragraph.text:
                         paragraph.text = 'Рисунок 1 – Общий вид изделия\n'
-                        image_name = fields_dict['file_path']
-                        image_path = os.path.join(settings.MEDIA_ROOT,
-                                                  f'{image_name}'
-                                                  )
+                        image_file_path = fields_dict['image_file_path']
+                        #image_path = os.path.join(settings.MEDIA_ROOT,
+                                                  #f'{image_name}'
+                                                  #)
                         run = paragraph.add_run()
-                        picture = run.add_picture(image_path)
+                        picture = run.add_picture(image_file_path)
                         # Задаем максимально допустимый размер
                         max_width = Inches(4)
                         max_height = Inches(3)
@@ -89,7 +89,7 @@ def insert_image_data(fields_dict: dict, document) -> None:
                         picture.width = int(current_width * scale_ratio)
                         picture.height = int(current_height * scale_ratio)
                         # Удаляем временное изображение
-                        delete_file(image_path)
+                        delete_file(image_file_path)
                         break
 
 

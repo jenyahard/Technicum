@@ -1,23 +1,43 @@
 {% extends "base.html" %}
 {% block content %}
-<h5>Разработка документов СМК (ISO 9001)</h5>
-<p>Данный раздел находится в процессе разработки</p>
-<!--<br>
-<form action="smk_get_data/" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <label>Введите дату документа:<span style="color: red;">*</span></label>
-        <br><input type="date" name="field6" value=""><br>
-    <label>Введите номер документа:<span style="color: red;">*</span></label>
-        <br><input type="text" name="field7" value=""><br>
-    <label>Срок действия договора(выберите):</label><br>
-        <select name="field4" required style="width: 180px;">
-        <option value="1 год">1 год</option>
-        <option value="2 года">2 года</option>
-        <option value="3 года">3 года</option>
-        <option value="5 лет">5 лет</option>
-        <option value="10 лет">10 лет</option>
-        <option value="20 лет">20 лет</option>
-        </select><br><br>
-    <br><input type="submit" class="btn btn-success" value="Сформировать документ">
-</form>-->
+<div class="row mb-5">
+    <div class="col-md-8 mx-auto">
+        <h4>Разработка документов СМК (ISO 9001)</h4>
+        <p class="text-secondary mb-4 fs-8px">Обязательные для заполнения поля помечены<span class="star">* </span></p>
+            <form action="smk_get_data/" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label class="form-label"><span class="star"> * </span>Введите название компании:</label>
+                            <input class="form-control" type="text" name="field1" value="" placeholder="ООО'Завод-изготовитель'" required="" maxlength="50">
+                            <div class="invalid-feedback">Название компании обязательно</div>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label"><span class="star"> * </span>Продолжите фразу "СМК распространяется на ООО "Завод" применительно к...."</label>
+                            <input class="form-control" type="text" name="field2" value="" placeholder="производству электротехнических изделий" required="" maxlength="100">
+                            <div class="invalid-feedback">обязательное поле</div>
+                        </div>
+                        <div class="col-5">
+                            <label class="form-label"><span class="star">* </span>Введите дату составления документов СМК:</label>
+                            <input class="form-control" type="date" name="field3" value="" required="">
+                            <div class="invalid-feedback">Дату обязательно.</div>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label"><span class="star">* </span>Введите адрес производства:</label>
+                            <input class="form-control" type="text" name="field4" value="" required="" placeholder="100150, Россия, г. Москва, ул. Арбат, д.1">
+                            <div class="invalid-feedback">Адрес обязательно.</div>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label"><span class="star">* </span>Введите контактные данные компании:</label>
+                            <input class="form-control" type="text" name="field5" value="" required="" placeholder="www.company.ru, тел: +7(999)222-3311, email: mail@mail.ru">
+                            <div class="invalid-feedback">Адрес обязательно.</div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="col-lg-6 mx-auto">
+                        <input type="submit" class="btn btn-primary btn-lg w-100" value="Сформировать документ">
+                    </div>
+            </form>
+    </div>
+</div>
 {% endblock %}
