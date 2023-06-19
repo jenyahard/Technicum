@@ -9,7 +9,7 @@ from .models import News
 def index(request: HttpRequest) -> HttpResponse:
     template = 'index.html'
     all_news = list(News.objects.all())
-    context = {'news': all_news[::-1]}
+    context = {'news': all_news[::-1][0:3]}
     return render(request, template, context)
 
 
