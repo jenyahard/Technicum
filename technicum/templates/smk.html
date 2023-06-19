@@ -1,10 +1,49 @@
 {% extends "base.html" %}
+
 {% block content %}
+<style>
+  .lds-ring {
+    display: inline-block;
+    position: relative;
+    width: 64px;
+    height: 64px;
+  }
+  .lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 51px;
+    height: 51px;
+    margin: 6px;
+    border: 6px solid #fff;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #fff transparent transparent transparent;
+  }
+  .lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+  }
+  .lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+  }
+  .lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+  }
+  @keyframes lds-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+</style>
+
 <div class="row mb-5">
     <div class="col-md-8 mx-auto">
         <h4>Разработка документов СМК (ISO 9001)</h4>
         <p class="text-secondary mb-4 fs-8px">Обязательные для заполнения поля помечены<span class="star">* </span></p>
-            <form action="smk_get_data/" method="post" enctype="multipart/form-data">
+            <form action="smk_get_data/" method="post" enctype="multipart/form-data" onsubmit="showLoadingMessage()">
                 {% csrf_token %}
                     <div class="row g-3">
                         <div class="col-12">
@@ -30,14 +69,30 @@
                         <div class="col-12">
                             <label class="form-label"><span class="star">* </span>Введите контактные данные компании:</label>
                             <input class="form-control" type="text" name="field5" value="" required="" placeholder="www.company.ru, тел: +7(999)222-3311, email: mail@mail.ru">
-                            <div class="invalid-feedback">Адрес обязательно.</div>
+                            <div class="invalid-feedback">Контакты обязательно.</div>
                         </div>
                     </div>
                     <br>
+                    <br>
                     <div class="col-lg-6 mx-auto">
-                        <input type="submit" class="btn btn-primary btn-lg w-100" value="Сформировать документ">
+                        <button type="submit" class="btn btn-primary btn-lg w-100" id="submitButton">
+                          <span id="loadingAnimation" class="lds-ring" style="display: none;"><div></div><div></div><div></div><div></div></span>
+                          <span id="buttonText">Сформировать документ</span>
+                        </button>
                     </div>
             </form>
     </div>
 </div>
+
+<script>
+  function showLoadingMessage() {
+    var submitButton = document.getElementById("submitButton");
+    var loadingAnimation = document.getElementById("loadingAnimation");
+    var buttonText = document.getElementById("buttonText");
+    
+    submitButton.disabled = true;
+    loadingAnimation.style.display = "inline-block";
+    buttonText.textContent = "Конструирую документы. Это займет 30 секунд.";
+  }
+</script>
 {% endblock %}

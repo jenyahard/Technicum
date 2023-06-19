@@ -70,8 +70,10 @@
                 }
             }
         </style>
+      <link rel="icon" type="image/png" href="{% static 'favicon-32x32.png' %}" sizes="32x32" />
+      <link rel="icon" type="image/png" href="{% static 'favicon-16x16.png' %}" sizes="16x16" />
 </head>
-  <body class="d-flex flex-column min-vh-100 bg-light">
+  <body class="d-flex flex-column min-vh-100 bg-light" background="{% static 'bg2.jpg' %}" style="background-size: cover;">
     <header>
       <nav class="navbar navbar-expand-lg bg-body shadow-sm">
         <div class="container">

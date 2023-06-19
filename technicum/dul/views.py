@@ -12,5 +12,6 @@ def dul(request: HttpRequest) -> HttpResponse:
 def dul_get_data(request: HttpRequest) -> HttpResponse:
     fields_dict = {}
     fields_dict['doc_type'] = 'dul'
+    fields_dict['ru_name'] = 'ДУЛ'
     response = transform_data(fields_dict, request)
     return response

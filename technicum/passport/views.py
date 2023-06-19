@@ -12,5 +12,6 @@ def passport(request: HttpRequest) -> HttpResponse:
 def passport_get_data(request):
     fields_dict = {}
     fields_dict['doc_type'] = 'passport'
+    fields_dict['ru_name'] = 'Паспорт'
     response = transform_data(fields_dict, request)
     return response

@@ -12,5 +12,6 @@ def obez(request: HttpRequest) -> HttpResponse:
 def obez_get_data(request: HttpRequest) -> HttpResponse:
     fields_dict = {}
     fields_dict['doc_type'] = 'obez'
+    fields_dict['ru_name'] = 'Обоснование безопасности'
     response = transform_data(fields_dict, request)
     return response

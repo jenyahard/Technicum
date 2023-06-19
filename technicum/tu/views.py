@@ -12,4 +12,5 @@ def tu(request: HttpRequest) -> HttpResponse:
 def tu_get_data(request: HttpRequest) -> HttpResponse:
     fields_dict = {}
     fields_dict['doc_type'] = 'tu'
+    fields_dict['ru_name'] = 'Технические условия'
     return transform_data(fields_dict, request)

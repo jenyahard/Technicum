@@ -16,11 +16,20 @@ def main_func(fields_dict: dict):
        6-удаляет изображение из общей папки
        7-сохраняет готовый файл в общей папке
     '''
-    doc_type = fields_dict['doc_type']
-    base_doc_path = os.path.join(settings.MEDIA_ROOT, f'{doc_type}_base.docx')
-    document = Document(base_doc_path)
-    insert_data(fields_dict, document)  # вставляем данные в шаблонный документ
-    new_doc_path = os.path.join(settings.MEDIA_ROOT, f'new_{doc_type}.docx')
+    if fields_dict['doc_type'][0:3] == 'smk':
+        doc_type = fields_dict['doc_type']
+        base_file_name = fields_dict['base_file_name']
+        print('base_file_name =====', base_file_name)
+        base_doc_path = os.path.join(settings.MEDIA_ROOT, 'smk', f'{base_file_name}')
+        document = Document(base_doc_path)
+        insert_data(fields_dict, document)  # вставляем данные в шаблонный документ
+        new_doc_path = os.path.join(settings.MEDIA_ROOT, 'new_smk_files', f'new_{doc_type}.docx')
+    else:
+        doc_type = fields_dict['doc_type']
+        base_doc_path = os.path.join(settings.MEDIA_ROOT, f'{doc_type}_base.docx')
+        document = Document(base_doc_path)
+        insert_data(fields_dict, document)  # вставляем данные в шаблонный документ
+        new_doc_path = os.path.join(settings.MEDIA_ROOT, f'new_{doc_type}.docx')
     document.save(new_doc_path)
     count_execution()
 
