@@ -66,7 +66,7 @@ def download_files(request):
         files_to_download.append(f'new_smk{i}.docx')
     # Создание временного архива
     zip_filename = 'Документы СМК.zip'
-    zip_file_path = os.path.join(settings.MEDIA_ROOT, zip_filename)
+    zip_file_path = os.path.join(settings.MEDIA_ROOT, quote(zip_filename))
     with zipfile.ZipFile(zip_file_path, 'w') as zip_file:
         for file in files_to_download:
             file_path = os.path.join(settings.MEDIA_ROOT, 'new_smk_files',file)
