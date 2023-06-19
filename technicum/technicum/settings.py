@@ -14,6 +14,7 @@ from pathlib import Path
 import environ
 import os
 
+DEFAULT_CHARSET = 'utf-8'
 
 env = environ.Env(SECRET_KEY=(str, 'SECRET_KEY'))
 # Build paths inside the project like this: BASE_DIR / 'subdir'.

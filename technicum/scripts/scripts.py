@@ -26,7 +26,7 @@ def transform_data(fields_dict: dict, request: HttpRequest) -> HttpResponse:
         uploaded_file = request.FILES.get('field18')
         if uploaded_file:  # Проверка наличия загруженного файла
             file_name = uploaded_file.name
-            image_file_path = os.path.join(settings.MEDIA_ROOT, file_name)
+            image_file_path = os.path.join(settings.MEDIA_ROOT, quote(file_name))
             default_storage.save(image_file_path, uploaded_file)
             fields_dict['image_file_path'] = image_file_path
         ready_doc_file_path = os.path.join(settings.MEDIA_ROOT, f'new_{doc_type}.docx')
