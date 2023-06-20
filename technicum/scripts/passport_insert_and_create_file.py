@@ -225,20 +225,6 @@ def transliterate_to_english(word: str) -> str:
     return transliterated_word
 
 
-#   def count_execution() -> None:
-#       '''Сохраняет количество обращений к функции
-#       в файл counter.txt в корне проекта
-#       '''
-#       counter_path = os.path.join(settings.BASE_DIR, 'counter.txt')
-#       try:
-#           with open(counter_path, 'r') as file:
-#               count = int(file.read())
-#       except:
-#           count = 0
-#       count += 1
-#       with open(counter_path, 'w') as file:
-#           file.write(str(count))
-
 def count_execution() -> None:
     '''Сохраняет количество обращений к функции
        в файл counter_date.txt в папке counter
