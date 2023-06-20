@@ -1,4 +1,5 @@
 import os
+import datetime
 
 from transliterate import translit
 
@@ -224,15 +225,33 @@ def transliterate_to_english(word: str) -> str:
     return transliterated_word
 
 
+#   def count_execution() -> None:
+#       '''Сохраняет количество обращений к функции
+#       в файл counter.txt в корне проекта
+#       '''
+#       counter_path = os.path.join(settings.BASE_DIR, 'counter.txt')
+#       try:
+#           with open(counter_path, 'r') as file:
+#               count = int(file.read())
+#       except:
+#           count = 0
+#       count += 1
+#       with open(counter_path, 'w') as file:
+#           file.write(str(count))
+
 def count_execution() -> None:
     '''Сохраняет количество обращений к функции
-       в файл counter.txt в корне проекта
+       в файл counter_date.txt в папке counter
     '''
-    counter_path = os.path.join(settings.BASE_DIR, 'counter.txt')
+    current_date = datetime.datetime.now().strftime("%Y-%m-%d")
+    # Создаем папку "counter", если она не существует
+    counter_dir = os.path.join(settings.BASE_DIR, 'counter')
+    os.makedirs(counter_dir, exist_ok=True)
+    counter_path = os.path.join(counter_dir, f'counter_{current_date}.txt')
     try:
         with open(counter_path, 'r') as file:
             count = int(file.read())
-    except:
+    except FileNotFoundError:
         count = 0
     count += 1
     with open(counter_path, 'w') as file:
