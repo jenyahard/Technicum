@@ -32,6 +32,7 @@ urlpatterns = [
     path('obez/', include('obez.urls', namespace='obez')),
     path('dul/', include('dul.urls', namespace='dul')),
     path('about/', about_view, name='about'),
+    path('questions/', include('questions.urls', namespace='questions')),
     path('logout/', logout_view, name='logout'),
     path('', login_view, name='login'),
 ]

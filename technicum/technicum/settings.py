@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'contract.apps.ContractConfig',
     'main_page.apps.MainPageConfig',
     'passport.apps.PassportConfig',
+    'questions.apps.QuestionsConfig',
     'tu.apps.TuConfig',
     'rexpl.apps.RexplConfig',
 ]

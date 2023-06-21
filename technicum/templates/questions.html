@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %}
+  <h4>Задать ИИ Техникума вопрос по продукции</h4>
+  <p>
+    <div class="col-8">
+            Искусственный интеллект (ИИ) - способен выполнять экспертные задачи в сфере сертификации, чтобы сэкономить Ваше время!
+            ИИ Техникума подберет код ТНВЭД, ОКПД2 и подскажет, сертификации по каким ТР ТС подлежит продукция.
+            Достаточно просто указать её название. ИИ находится в процессе разработки. <span class="star">Точность ответов составляет 90% </span>
+    </div>
+  </p>
+    <div class="card col-8">
+        <div class="card-header">
+        Данные о продкуции
+        </div>
+        <div class="card-body">
+        <form method="post" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="col-md-8">
+                <label class="form-label">Введите название продукции:</label>
+                <input class="form-control" type="text" name="field1" value="" placeholder="Хлеб" required maxlength="60"> 
+            </div>
+
+            {% if answer != '' %}
+                <br>
+                <hr>
+                {{ answer }}
+                <hr>
+            {% endif %}
+            <br>
+            <div class="col-lg-3">
+                <input type="submit" class="btn btn-primary btn-lg w-100" value="Получить ответ" id="submitButton">
+                <p id="loadingMessage" style="display: none;">Подождите 5 секунд, готовлю ответ ...</p>
+            </div>  
+            <script>
+                document.getElementById('submitButton').addEventListener('click', function() {
+                    document.getElementById('loadingMessage').style.display = 'block';
+                });
+            </script>
+        </form>
+        </div>
+    </div>
+{% endblock %}
